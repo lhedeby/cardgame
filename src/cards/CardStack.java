@@ -102,11 +102,6 @@ public class CardStack implements Clickable {
             this.cards.add(cards[i]);
         }
 
-//        for(Card c : cards) {
-//            c.setxPos(this.x);
-//            c.setyPos(this.y);
-//            this.cards.add(c);
-//        }
     }
 
     public void addCards(List<Card> list) {
@@ -115,11 +110,6 @@ public class CardStack implements Clickable {
             list.get(i).setyPos(this.y);
             cards.add(list.get(i));
         }
-//        for (Card c : list) {
-//            c.setxPos(this.x);
-//            c.setyPos(this.y);
-//            cards.add(c);
-//        }
     }
 
 
@@ -143,5 +133,13 @@ public class CardStack implements Clickable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

@@ -63,9 +63,6 @@ public class PlayingCardDeck extends CardDeck implements Renderable {
         for(int i = 0; i < this.cards.size(); i++) {
             ((PlayingCard) this.cards.get(i)).draw(g);
         }
-//        for(Card c : this.cards) {
-//            ((PlayingCard) c).draw(g);
-//        }
     }
 
 

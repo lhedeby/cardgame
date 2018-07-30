@@ -7,10 +7,10 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class Button implements Clickable, Renderable {
-    String text;
-    State state;
-    int x, y;
-    int width, height;
+    private String text;
+    private State state;
+    private int x, y;
+    private int width, height;
 
     public Button(int x, int y, int width, int height, String text, State state) {
         this.width = width;
@@ -36,7 +36,6 @@ public class Button implements Clickable, Renderable {
                 e.getX() < this.x + this.width &&
                 e.getY() > this.y &&
                 e.getY() < this.y + this.height) {
-            System.out.println(this.text + " was clicked");
             gameState.state = this.state;
         }
     }

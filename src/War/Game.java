@@ -6,23 +6,30 @@ import mouse.Input;
 import playingcards.PlayingCardDeck;
 
 public class Game {
-
-    public Game() {
-        Window window = new Window();
-
-        PlayingCardDeck deck = new PlayingCardDeck();
-        Player player = new Player();
-        Computer computer = new Computer();
-        GameState state = new GameState(computer, player, deck);
-        Renderer renderer = new Renderer(window, state);
-        Input input = new Input(state);
-        window.frame.addMouseListener(input);
+    Window window;
+    PlayingCardDeck deck;
+    Player player;
+    Computer computer;
+    GameState state;
+    Renderer renderer;
+    Input input;
+    Button startButton, statsButton, rulesButton;
+    private void init() {
+        window = new Window();
+        deck = new PlayingCardDeck();
+        player = new Player();
+        computer = new Computer();
+        state = new GameState(computer, player, deck);
+        renderer = new Renderer(window, state);
+        input = new Input(state);
+        window.getFrame().addMouseListener(input);
         input.addListener(player.stack);
 
         renderer.addGameItem(deck);
-        Button startButton = new Button(100,150, 200,60, "New Game", State.START);
-        Button statsButton = new Button(100,250, 200,60, "Statistics", State.STATISTICS);
-        Button rulesButton = new Button(100,350, 200,60, "Rules", State.RULES);
+
+        startButton = new Button(100, 150, 200, 60, "New Game", State.START);
+        statsButton = new Button(100, 250, 200, 60, "Statistics", State.STATISTICS);
+        rulesButton = new Button(100, 350, 200, 60, "Rules", State.RULES);
         renderer.addMenuItem(startButton, statsButton, rulesButton);
 
         input.addListener(startButton);
@@ -31,23 +38,24 @@ public class Game {
 
         new Thread(renderer).start();
 
-//        deck.stack.dealTo(52, player.stack, computer.stack);
-//        player.stack.shuffle();
-//        computer.stack.shuffle();
+    }
+    public Game() {
+        init();
+        loop();
+
+    }
 
 
-
-
-
-        while(true) {
-            if(state.state == State.START) {
+    private void loop() {
+        while (true) {
+            if (state.state == State.START) {
                 state.start();
             }
 
-            if(state.state == State.PLAYING) {
+            if (state.state == State.PLAYING) {
                 state.computerAction();
                 state.waiting = true;
-                while(state.waiting);
+                while (state.waiting) ;
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -57,12 +65,7 @@ public class Game {
                 state.update();
                 state.checkStack();
             }
-
-
         }
-
-
-
     }
 
 }

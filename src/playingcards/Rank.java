@@ -21,8 +21,6 @@ public enum Rank {
         this.id = id;
     }
 
-
-
     public int getValue() {
         return id;
     }

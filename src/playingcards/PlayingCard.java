@@ -22,6 +22,8 @@ public class PlayingCard extends Card implements Renderable {
         this.suit = suit;
         this.front = front;
         this.back = back;
+        this.xPos = deck.stack.getX();
+        this.yPos = deck.stack.getY();
 
 
 

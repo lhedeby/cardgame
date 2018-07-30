@@ -3,7 +3,7 @@ package graphics;
 import javax.swing.*;
 
 public class Window {
-    public JFrame frame;
+    JFrame frame;
     public static final int WIDTH = 700;
     public static final int HEIGHT = 700;
 
@@ -14,5 +14,9 @@ public class Window {
         frame.setResizable(false);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public JFrame getFrame() {
+        return this.frame;
     }
 }
