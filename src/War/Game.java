@@ -22,36 +22,31 @@ public class Game {
         state = new GameState(computer, player, deck);
         renderer = new Renderer(window, state);
         input = new Input(state);
-        window.getFrame().addMouseListener(input);
-        input.addListener(player.stack);
-
-        renderer.addGameItem(deck);
-
         startButton = new Button(100, 150, 200, 60, "New Game", State.START);
         statsButton = new Button(100, 250, 200, 60, "Statistics", State.STATISTICS);
         rulesButton = new Button(100, 350, 200, 60, "Rules", State.RULES);
-        renderer.addMenuItem(startButton, statsButton, rulesButton);
 
+        window.getFrame().addMouseListener(input);
+        input.addListener(player.stack);
         input.addListener(startButton);
         input.addListener(statsButton);
         input.addListener(rulesButton);
 
+        renderer.addGameItem(deck);
+        renderer.addMenuItem(startButton, statsButton, rulesButton);
         new Thread(renderer).start();
-
     }
+
     public Game() {
         init();
         loop();
-
     }
-
 
     private void loop() {
         while (true) {
             if (state.state == State.START) {
                 state.start();
             }
-
             if (state.state == State.PLAYING) {
                 state.computerAction();
                 state.waiting = true;
@@ -61,11 +56,9 @@ public class Game {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 state.update();
                 state.checkStack();
             }
         }
     }
-
 }

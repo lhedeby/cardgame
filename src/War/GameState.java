@@ -36,11 +36,8 @@ public class GameState {
         player.winStack.dealTo(player.winStack.size(), deck.stack);
         player.playStack.dealTo(player.playStack.size(), deck.stack);
         computer.playStack.dealTo(computer.playStack.size(), deck.stack);
-        System.out.println(deck.stack.size());
+        deck.stack.shuffle();
         deck.stack.dealTo(deck.stack.size(), player.stack, computer.stack);
-        player.stack.shuffle();
-        computer.stack.shuffle();
-
 
         this.waiting = true;
         this.state = State.PLAYING;
@@ -68,13 +65,10 @@ public class GameState {
         } else if(computerCard.getRank().getValue() > playerCard.getRank().getValue()) {
             computer.playStack.drawTo(computer.playStack.size(), computer.winStack);
             player.playStack.drawTo(player.playStack.size(), computer.winStack);
-
-
         }
         else if(computerCard.getRank().getValue() < playerCard.getRank().getValue()) {
             computer.playStack.drawTo(computer.playStack.size(), player.winStack);
             player.playStack.drawTo(player.playStack.size(), player.winStack);
-
         } else {
             warCounter = 3;
             System.out.println("WARRR!!");
@@ -86,8 +80,6 @@ public class GameState {
             System.out.println("Player loose");
             won = false;
             this.end();
-
-
         } else if( player.stack.size() == 0 && player.winStack.size() > 0) {
             player.winStack.dealTo(player.winStack.size() ,player.stack);
             player.stack.shuffle();
@@ -109,21 +101,5 @@ public class GameState {
         } else {
             computer.playUp();
         }
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public int getWarCounter() {
-        return warCounter;
-    }
-
-    public boolean isWaiting() {
-        return waiting;
-    }
-
-    public void setWaiting(boolean waiting) {
-        this.waiting = waiting;
     }
 }
