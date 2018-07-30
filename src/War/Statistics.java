@@ -45,13 +45,13 @@ public class Statistics implements Renderable {
         g.setFont(new Font("TimesRoman", Font.BOLD, 14));
 
         g.setColor(Color.PINK);
-        g.fillRect(350,100, 300, 200);
+        g.fillRect(350,150, 300, 200);
         g.setColor(Color.BLACK);
-        g.drawString("Statistics", 350 + 30, 100 + 30);
-        g.drawString("Games Played: " + gamesPlayed, 350 + 30, 100 + 50);
-        g.drawString("Wins: " + wins, 350 + 30, 100 + 70);
-        g.drawString("Loses: " + loses, 350 + 30, 100 + 90);
-        g.drawString("Win Rate: " + winRate + "%", 350 + 30, 100 + 110);
+        g.drawString("Statistics", 350 + 30, 180);
+        g.drawString("Games Played: " + gamesPlayed, 350 + 30, 150 + 50);
+        g.drawString("Wins: " + wins, 350 + 30, 150 + 70);
+        g.drawString("Loses: " + loses, 350 + 30, 150 + 90);
+        g.drawString("Win Rate: " + winRate + "%", 350 + 30, 150 + 110);
 
     }
 

@@ -65,19 +65,11 @@ public class CardStack implements Clickable {
         return drawn;
     }
 
-
     public Card deal() {
         Card drawn = cards.get(cards.size() - 1);
         cards.remove(cards.size() - 1);
         if (drawn.isFacingUp()) drawn.flip();
         return drawn;
-    }
-
-
-    public void flipStack() {
-        for(Card c : cards) {
-            c.flip();
-        }
     }
 
     public Card getTopCard() {
@@ -88,8 +80,6 @@ public class CardStack implements Clickable {
         }
     }
 
-
-
     public boolean isEmtpy() {
         return cards.isEmpty();
     }
@@ -97,24 +87,21 @@ public class CardStack implements Clickable {
     public void addCards(Card... cards) {
 
         for(int i = 0; i < cards.length; i++) {
-            cards[i].setxPos(this.x);
-            cards[i].setyPos(this.y);
+            cards[i].setX(this.x);
+            cards[i].setY(this.y);
             this.cards.add(cards[i]);
         }
-
     }
 
     public void addCards(List<Card> list) {
         for(int i = 0; i < list.size(); i++) {
-            list.get(i).setxPos(this.x);
-            list.get(i).setyPos(this.y);
+            list.get(i).setX(this.x);
+            list.get(i).setY(this.y);
             cards.add(list.get(i));
         }
     }
 
-
-
-    public void dealTo(int numberOfCards, CardStack... stacks) {
+    public void dealFaceUp(int numberOfCards, CardStack... stacks) {
         for(int i = 0; i < numberOfCards; i++) {
             stacks[i%stacks.length].addCards(deal());
             try {
@@ -124,7 +111,7 @@ public class CardStack implements Clickable {
             }
         }
     }
-    public void drawTo(int numberOfCards, CardStack... stacks) {
+    public void dealFaceDown(int numberOfCards, CardStack... stacks) {
         for(int i = 0; i < numberOfCards; i++) {
             stacks[i%stacks.length].addCards(draw());
             try {

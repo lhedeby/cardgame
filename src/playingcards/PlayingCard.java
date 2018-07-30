@@ -1,6 +1,5 @@
 package playingcards;
 
-import War.GameState;
 import cards.Card;
 import cards.CardDeck;
 import graphics.Renderable;
@@ -8,13 +7,10 @@ import graphics.Renderable;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-
 public class PlayingCard extends Card implements Renderable {
     Rank rank;
     Suit suit;
-    double renderX, renderY;
-    double delay = 0;
-
+    private double renderX, renderY;
 
     public PlayingCard(int width, int height, Rank rank, Suit suit, BufferedImage front, BufferedImage back, CardDeck deck) {
         super(width, height, deck);
@@ -22,22 +18,18 @@ public class PlayingCard extends Card implements Renderable {
         this.suit = suit;
         this.front = front;
         this.back = back;
-        this.xPos = deck.stack.getX();
-        this.yPos = deck.stack.getY();
-
-
-
+        this.x = deck.stack.getX();
+        this.y = deck.stack.getY();
     }
 
     @Override
     public void draw(Graphics g) {
-        if(delay > 0) {
-            delay--;
-        } else if(renderX - xPos != 0) {
-            renderX -= (renderX - xPos) * 0.2;
-            renderY -= (renderY - yPos) * 0.2;
+
+        if(renderX - x != 0) {
+            renderX -= (renderX - x) * 0.2;
+            renderY -= (renderY - y) * 0.2;
         }
-        g.drawImage(this.getImage(),
+        g.drawImage(getImage(),
                 (int) renderX,
                 (int) renderY,
                 null);

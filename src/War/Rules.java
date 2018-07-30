@@ -3,10 +3,6 @@ package War;
 import graphics.Renderable;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class Rules implements Renderable {
     String[] rules = {
@@ -29,12 +25,12 @@ public class Rules implements Renderable {
     public void draw(Graphics g) {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 12));
         g.setColor(Color.PINK);
-        g.fillRect(350,100, 300, 400);
+        g.fillRect(350,150, 300, 400);
 
         g.setColor(Color.BLACK);
-        g.drawString("Rules", 350 + 30, 100 + 30);
+        g.drawString("Rules", 350 + 30, 150 + 30);
         for(int i = 0; i < rules.length; i++) {
-            g.drawString(rules[i], 350 + 30, 150 + 20 * i);
+            g.drawString(rules[i], 350 + 30, 200 + 20 * i);
 
         }
     }

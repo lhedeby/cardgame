@@ -6,7 +6,7 @@ package cards;
 import java.awt.image.BufferedImage;
 
 public abstract class  Card{
-    protected int xPos, yPos;
+    protected int x, y;
     protected int width;
     protected int height;
     protected boolean facingUp;
@@ -20,7 +20,7 @@ public abstract class  Card{
 
 
     }
-    public BufferedImage getImage() {
+    protected BufferedImage getImage() {
         return facingUp ? front : back;
     }
 
@@ -28,25 +28,18 @@ public abstract class  Card{
         facingUp = !facingUp;
     }
 
-    public void setxPos(int xPos) {
+    void setX(int x) {
         deck.putOnTop(this);
-        this.xPos = xPos;
+        this.x = x;
     }
 
-    public void setyPos(int yPos) {
+    void setY(int y) {
         deck.putOnTop(this);
-        this.yPos = yPos;
+        this.y = y;
     }
 
     public boolean isFacingUp() {
         return facingUp;
     }
 
-    public BufferedImage getFront() {
-        return front;
-    }
-
-    public BufferedImage getBack() {
-        return back;
-    }
 }

@@ -29,19 +29,16 @@ public class GameState {
     }
 
     void start() {
-        this.state = State.PLAYING;
-        player.stack.dealTo(player.stack.size(), deck.stack);
-        computer.stack.dealTo(computer.stack.size(), deck.stack);
-        computer.winStack.dealTo(computer.winStack.size(), deck.stack);
-        player.winStack.dealTo(player.winStack.size(), deck.stack);
-        player.playStack.dealTo(player.playStack.size(), deck.stack);
-        computer.playStack.dealTo(computer.playStack.size(), deck.stack);
+        state = State.PLAYING;
+        player.stack.dealFaceUp(player.stack.size(), deck.stack);
+        computer.stack.dealFaceUp(computer.stack.size(), deck.stack);
+        computer.winStack.dealFaceUp(computer.winStack.size(), deck.stack);
+        player.winStack.dealFaceUp(player.winStack.size(), deck.stack);
+        player.playStack.dealFaceUp(player.playStack.size(), deck.stack);
+        computer.playStack.dealFaceUp(computer.playStack.size(), deck.stack);
         deck.stack.shuffle();
-        deck.stack.dealTo(deck.stack.size(), player.stack, computer.stack);
-
-        this.waiting = true;
-        this.state = State.PLAYING;
-
+        deck.stack.dealFaceUp(deck.stack.size(), player.stack, computer.stack);
+        waiting = true;
     }
 
     void end() {
@@ -63,34 +60,31 @@ public class GameState {
         if(warCounter > 0) {
             warCounter--;
         } else if(computerCard.getRank().getValue() > playerCard.getRank().getValue()) {
-            computer.playStack.drawTo(computer.playStack.size(), computer.winStack);
-            player.playStack.drawTo(player.playStack.size(), computer.winStack);
+            computer.playStack.dealFaceDown(computer.playStack.size(), computer.winStack);
+            player.playStack.dealFaceDown(player.playStack.size(), computer.winStack);
         }
         else if(computerCard.getRank().getValue() < playerCard.getRank().getValue()) {
-            computer.playStack.drawTo(computer.playStack.size(), player.winStack);
-            player.playStack.drawTo(player.playStack.size(), player.winStack);
+            computer.playStack.dealFaceDown(computer.playStack.size(), player.winStack);
+            player.playStack.dealFaceDown(player.playStack.size(), player.winStack);
         } else {
             warCounter = 3;
-            System.out.println("WARRR!!");
         }
     }
 
     void checkStack() {
         if(player.stack.size() == 0 && player.winStack.size() == 0) {
-            System.out.println("Player loose");
             won = false;
-            this.end();
+            end();
         } else if( player.stack.size() == 0 && player.winStack.size() > 0) {
-            player.winStack.dealTo(player.winStack.size() ,player.stack);
+            player.winStack.dealFaceUp(player.winStack.size() ,player.stack);
             player.stack.shuffle();
         }
 
         if(computer.stack.size() == 0 && computer.winStack.size() == 0) {
-            System.out.println("computer loose");
             won = true;
-            this.end();
+            end();
         } else if( computer.stack.size() == 0 && computer.winStack.size() > 0) {
-            computer.winStack.dealTo(computer.winStack.size() ,computer.stack);
+            computer.winStack.dealFaceUp(computer.winStack.size() ,computer.stack);
             computer.stack.shuffle();
         }
     }
