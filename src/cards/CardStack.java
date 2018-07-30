@@ -46,7 +46,6 @@ public class CardStack implements Clickable {
             } else {
                 gameState.player.playStack.addCards(gameState.player.stack.draw());
                 gameState.waiting = false;
-
             }
         }
     }
@@ -57,6 +56,7 @@ public class CardStack implements Clickable {
     public void putOnTop(Card card) {
         cards.add(card);
     }
+    public void putOnBottom(Card card) { cards.add(0, card); }
 
     public Card draw() {
         Card drawn = cards.get(cards.size() - 1);
