@@ -2,8 +2,8 @@ package graphics;
 
 
 
-import War.GameState;
-import War.State;
+import war.GameState;
+import war.State;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

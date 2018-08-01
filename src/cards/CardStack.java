@@ -1,7 +1,7 @@
 package cards;
 
-import War.GameState;
-import War.State;
+import war.GameState;
+import war.State;
 import mouse.Clickable;
 
 import java.awt.event.MouseEvent;
@@ -41,10 +41,10 @@ public class CardStack implements Clickable {
                 e.getY() < y + height &&
                 e.getY() > y) {
             if(gameState.warCounter > 0) {
-                gameState.player.playStack.addCards(gameState.player.stack.deal());
+                gameState.player.playStack.addCards(gameState.player.stack.drawFaceDown());
                 gameState.waiting = false;
             } else {
-                gameState.player.playStack.addCards(gameState.player.stack.draw());
+                gameState.player.playStack.addCards(gameState.player.stack.drawFaceUp());
                 gameState.waiting = false;
             }
         }
@@ -58,14 +58,14 @@ public class CardStack implements Clickable {
     }
     public void putOnBottom(Card card) { cards.add(0, card); }
 
-    public Card draw() {
+    public Card drawFaceUp() {
         Card drawn = cards.get(cards.size() - 1);
         cards.remove(cards.size() - 1);
         if (!drawn.isFacingUp()) drawn.flip();
         return drawn;
     }
 
-    public Card deal() {
+    public Card drawFaceDown() {
         Card drawn = cards.get(cards.size() - 1);
         cards.remove(cards.size() - 1);
         if (drawn.isFacingUp()) drawn.flip();
@@ -103,7 +103,7 @@ public class CardStack implements Clickable {
 
     public void dealFaceUp(int numberOfCards, CardStack... stacks) {
         for(int i = 0; i < numberOfCards; i++) {
-            stacks[i%stacks.length].addCards(deal());
+            stacks[i%stacks.length].addCards(drawFaceDown());
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {
@@ -113,7 +113,7 @@ public class CardStack implements Clickable {
     }
     public void dealFaceDown(int numberOfCards, CardStack... stacks) {
         for(int i = 0; i < numberOfCards; i++) {
-            stacks[i%stacks.length].addCards(draw());
+            stacks[i%stacks.length].addCards(drawFaceUp());
             try {
                 Thread.sleep(20);
             } catch (InterruptedException e) {

@@ -1,4 +1,4 @@
-package War;
+package war.data;
 
 import graphics.Renderable;
 
@@ -13,7 +13,7 @@ public class Statistics implements Renderable {
     public Statistics() {
 
         try {
-            BufferedReader br = new BufferedReader((new FileReader(".\\src\\stats.txt")));
+            BufferedReader br = new BufferedReader((new FileReader(".\\src\\war\\data\\stats.txt")));
             this.gamesPlayed = Integer.parseInt(br.readLine());
             this.wins = Integer.parseInt(br.readLine());
             this.loses = Integer.parseInt(br.readLine());
@@ -29,7 +29,7 @@ public class Statistics implements Renderable {
 
     public void save() {
         try {
-            PrintWriter writer = new PrintWriter(".\\src\\stats.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(".\\src\\war\\data\\stats.txt", "UTF-8");
             writer.println(this.gamesPlayed);
             writer.println(this.wins);
             writer.println(this.loses);

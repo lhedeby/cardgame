@@ -1,7 +1,7 @@
 package mouse;
 
 
-import War.GameState;
+import war.GameState;
 
 import java.awt.event.MouseEvent;
 

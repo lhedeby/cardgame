@@ -1,4 +1,4 @@
-package War;
+package war.players;
 
 import cards.CardStack;
 

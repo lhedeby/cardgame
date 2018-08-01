@@ -1,4 +1,4 @@
-package War;
+package war.players;
 
 import cards.CardStack;
 
@@ -13,11 +13,11 @@ public class Computer {
         this.winStack = new CardStack(350, 100);
     }
 
-    void playUp() {
-        playStack.addCards(stack.draw());
+    public void playUp() {
+        playStack.addCards(stack.drawFaceUp());
     }
 
-    void playDown() {
-        playStack.addCards(stack.deal());
+    public void playDown() {
+        playStack.addCards(stack.drawFaceDown());
     }
 }

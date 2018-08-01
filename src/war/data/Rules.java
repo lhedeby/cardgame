@@ -1,4 +1,4 @@
-package War;
+package war.data;
 
 import graphics.Renderable;
 

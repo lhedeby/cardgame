@@ -1,4 +1,4 @@
-package War;
+package war;
 
 public enum State {
     PLAYING,

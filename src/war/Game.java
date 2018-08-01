@@ -1,9 +1,11 @@
-package War;
+package war;
 
 import graphics.Renderer;
 import graphics.Window;
 import mouse.Input;
 import playingcards.PlayingCardDeck;
+import war.players.Computer;
+import war.players.Player;
 
 public class Game {
     Window window;

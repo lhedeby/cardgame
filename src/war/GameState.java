@@ -1,7 +1,11 @@
-package War;
+package war;
 
 import playingcards.PlayingCard;
 import playingcards.PlayingCardDeck;
+import war.data.Rules;
+import war.data.Statistics;
+import war.players.Computer;
+import war.players.Player;
 
 public class GameState {
     Computer computer;

@@ -1,4 +1,4 @@
-package War;
+package war;
 
 import graphics.Renderable;
 import mouse.Clickable;
